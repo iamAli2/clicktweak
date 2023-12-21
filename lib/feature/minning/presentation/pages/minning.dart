@@ -50,7 +50,9 @@ class Minning extends StatelessWidget {
                         children: [
                           Image.asset(MinningImage.name),
                           Row(
-                            children: [Image.asset(MinningImage.plenty)],
+                            children: [
+                              // Image.asset(MinningImage.plenty)
+                            ],
                           )
                         ],
                       ),
