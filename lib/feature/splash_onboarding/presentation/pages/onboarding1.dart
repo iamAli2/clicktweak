@@ -59,9 +59,9 @@ class _FirstOnboardState extends State<FirstOnboard> {
                     size: 20,
                     fontweight: FontWeight.w700,
                     color: Appcolors.yellow),
-                ontap: () {
-                  Navigator.pushNamed(context, RouteName.referCodeInput);
-                  // context.read<OnboardingCubit>().googleSignIn();
+                ontap: () async {
+                  // Navigator.pushNamed(context, RouteName.referCodeInput);
+                  await context.read<OnboardingCubit>().googleSignIn();
                 })
           ],
         ),

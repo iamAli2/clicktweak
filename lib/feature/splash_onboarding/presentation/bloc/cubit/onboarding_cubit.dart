@@ -25,7 +25,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   ];
   delaySplash() async {
     emit(OnboardingLoadingState());
-    await Future.delayed(const Duration(seconds: 8));
+    await Future.delayed(const Duration(seconds: 5));
     emit(OnboardingLoadedState());
   }
 
