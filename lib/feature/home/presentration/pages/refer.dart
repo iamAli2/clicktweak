@@ -15,10 +15,11 @@ class Refer extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return AppScaffold(
-        color: Appcolors.white,
+        backGroundColor: Appcolors.white,
+        color: Appcolors.redColor,
         body: Column(
           children: [
-            const HomeAppbar(),
+            HomeAppbar(),
             SizedBox(height: size.height * 0.07),
             CircleAvatar(
                 radius: 70.sp,

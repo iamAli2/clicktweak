@@ -15,7 +15,8 @@ class ReferalCodeInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return AppScaffold(
-        color: Appcolors.white,
+        backGroundColor: Appcolors.white,
+        color: Appcolors.redColor,
         body: Column(
           children: [
             const HomeAppbar(),
@@ -29,17 +30,31 @@ class ReferalCodeInput extends StatelessWidget {
                   const AppText(text: 'Enter referral code', size: 16),
                   SizedBox(height: size.height * 0.015),
                   AppTextField(),
-                  SizedBox(height: size.height * 0.56),
-                  AppButton(
-                      child: AppText(
-                          text: 'Continue ',
-                          color: Appcolors.yellow,
-                          size: 14,
-                          fontweight: FontWeight.w500),
-                      ontap: () {
-                        Navigator.pushNamed(context, RouteName.bottomnav);
-                        // return context.read<OnboardingCubit>().addUserInfo();
-                      }),
+                  SizedBox(height: size.height * 0.54),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteName.bottomnav,
+                        (route) => false,
+                      );
+                      // context.read<OnboardingCubit>().addUserInfo();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Appcolors.redColor,
+                          borderRadius: BorderRadius.circular(8)),
+                      height: 50,
+                      width: double.infinity,
+                      child: Center(
+                        child: AppText(
+                            text: 'Continue',
+                            size: 14,
+                            fontweight: FontWeight.w500,
+                            color: Appcolors.yellow),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: size.height * 0.015)
                 ],
               ),

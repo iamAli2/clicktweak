@@ -14,26 +14,21 @@ class FirstOnboard extends StatefulWidget {
 
 class _FirstOnboardState extends State<FirstOnboard> {
   @override
-  void initState() {
-    context.read<OnboardingCubit>().auth.authStateChanges().listen((event) {
-      context.read<OnboardingCubit>().user = event;
-    });
-    context.read<OnboardingCubit>().checkUserSigin();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
 
     return BlocListener<OnboardingCubit, OnboardingState>(
       listener: (context, state) {
         if (state is OnboardingSigin) {
-          Navigator.pushNamed(context, RouteName.referCodeInput);
+          Navigator.pushNamed(
+            context,
+            RouteName.referCodeInput,
+          );
         }
       },
       child: AppScaffold(
-        color: Appcolors.white,
+        backGroundColor: Appcolors.white,
+        color: Appcolors.redColor,
         body: Column(
           children: [
             SizedBox(height: size.height * 0.15),
@@ -43,7 +38,7 @@ class _FirstOnboardState extends State<FirstOnboard> {
             const Center(
                 child: AppText(
                     textalign: TextAlign.center,
-                    text: 'CLICKTWAEK',
+                    text: 'ClickTeak',
                     size: 16,
                     fontweight: FontWeight.w900)),
             SizedBox(height: size.height * 0.2),
@@ -52,17 +47,31 @@ class _FirstOnboardState extends State<FirstOnboard> {
                 size: 16,
                 text: 'Sign in with your google\naccount'),
             SizedBox(height: size.height * 0.035),
-            AppButton(
+            InkWell(
+              onTap: () async {
+                await context.read<OnboardingCubit>().googleSignIn();
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Appcolors.redColor,
+                    borderRadius: BorderRadius.circular(8)),
+                height: 50,
                 width: size.width * 0.4,
-                child: AppText(
-                    text: 'G+ LOGIN',
-                    size: 20,
-                    fontweight: FontWeight.w700,
-                    color: Appcolors.yellow),
-                ontap: () async {
-                  // Navigator.pushNamed(context, RouteName.referCodeInput);
-                  await context.read<OnboardingCubit>().googleSignIn();
-                })
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(OnboardingImages.googleLogo),
+                    SizedBox(width: size.width * 0.035),
+                    AppText(
+                        text: 'LOGIN',
+                        size: 20,
+                        fontweight: FontWeight.w700,
+                        color: Appcolors.yellow),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

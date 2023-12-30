@@ -14,7 +14,8 @@ class Plans extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return AppScaffold(
-        color: Appcolors.white,
+        backGroundColor: Appcolors.white,
+        color: Appcolors.redColor,
         body: Column(
           children: [
             const PlansAppbar(),
@@ -59,7 +60,7 @@ class YourPlans extends StatelessWidget {
                 color: Color(0xFFB9B9B9)),
             SizedBox(height: size.height * 0.002),
             const AppText(
-                text: '\$20',
+                text: '\$0',
                 size: 16,
                 fontweight: FontWeight.w700,
                 color: Color(0xFFB9B9B9)),
@@ -71,12 +72,22 @@ class YourPlans extends StatelessWidget {
                 color: Color(0xFFB9B9B9)),
             SizedBox(height: size.height * 0.002),
             const AppText(
-                text: '\$1.6',
+                text: '\$0.083/\$10',
                 size: 16,
                 fontweight: FontWeight.w700,
                 color: Color(0xFFB9B9B9))
           ]),
-          Image.asset(HomeImages.wlogo, color: const Color(0xFFB9B9B9))
+          Column(
+            children: [
+              Image.asset(HomeImages.wlogo),
+              SizedBox(height: size.height * 0.055),
+              AppText(
+                  text: 'Join Now',
+                  size: 16,
+                  fontweight: FontWeight.w900,
+                  color: Appcolors.yellow)
+            ],
+          )
         ],
       ),
     );
@@ -120,17 +131,27 @@ class PlansAppbar extends StatelessWidget {
                       ontap: () =>
                           readPlansCubit.selectPlansFilter(plan: 'PLANS'),
                       title: 'PLANS',
-                      icon: Icons.nature,
+                      icon: ImageIcon(
+                        const AssetImage('assets/Icons/plansImage.png'),
+                        color: watchPlansCubit.planFilter == 'PLANS'
+                            ? Appcolors.yellow
+                            : const Color(0xFFC9C9C9),
+                      ),
                       isActive: watchPlansCubit.planFilter == 'PLANS'),
                 ),
                 SizedBox(
-                  width: size.width * 0.35,
+                  width: size.width * 0.40,
                   child: PlansFilter(
                       isActive: watchPlansCubit.planFilter == 'YOUR PLANS',
                       ontap: () =>
                           readPlansCubit.selectPlansFilter(plan: 'YOUR PLANS'),
                       title: 'YOUR PLANS',
-                      icon: Icons.nature),
+                      icon: ImageIcon(
+                        const AssetImage('assets/Icons/plansImage.png'),
+                        color: watchPlansCubit.planFilter == 'YOUR PLANS'
+                            ? Appcolors.yellow
+                            : const Color(0xFFC9C9C9),
+                      )),
                 ),
               ],
             ),
@@ -149,7 +170,7 @@ class PlansFilter extends StatelessWidget {
       this.isActive = false,
       this.ontap});
   final String title;
-  final IconData icon;
+  final Widget icon;
   final bool isActive;
   final Function()? ontap;
   @override
@@ -162,10 +183,9 @@ class PlansFilter extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: 25.sp,
-                color: isActive ? Appcolors.yellow : const Color(0xFFC9C9C9),
+              icon,
+              const SizedBox(
+                width: 8,
               ),
               AppText(
                 size: 16,

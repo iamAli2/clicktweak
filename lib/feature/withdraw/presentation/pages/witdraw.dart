@@ -14,7 +14,8 @@ class Withdraw extends StatelessWidget {
     final withdrawFilter = context.watch<WithdrawCubit>().withdrawFilter;
     final size = MediaQuery.sizeOf(context);
     return AppScaffold(
-        color: const Color(0x2B000000),
+        backGroundColor: Appcolors.white,
+        color: Appcolors.redColor,
         body: Column(
           children: [
             const WithdrawAppbar(),
@@ -190,7 +191,7 @@ class WithdrawAppbar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
-                  width: size.width * 0.28,
+                  width: size.width * 0.35,
                   child: WithdrawFilter(
                       icon: Icons.refresh,
                       title: 'Withdraw',
@@ -198,7 +199,7 @@ class WithdrawAppbar extends StatelessWidget {
                       onTap: () => readWithdrawCubit.selectWithdrawfilter(
                           filter: 'Withdraw'))),
               SizedBox(
-                  width: size.width * 0.38,
+                  width: size.width * 0.45,
                   child: WithdrawFilter(
                       icon: Icons.refresh,
                       title: 'TRANSACTIONS',

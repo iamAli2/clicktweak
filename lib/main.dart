@@ -3,15 +3,20 @@ import 'package:clicktwaek/feature/withdraw/presentation/bloc/cubit/withdraw_cub
 import 'package:clicktwaek/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'config/page route/page_route.dart';
+import 'feature/home/presentration/src/utils.dart';
 import 'feature/splash_onboarding/presentation/bloc/cubit/onboarding_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top]);
+  await ClickDs.init();
   runApp(const MyApp());
 }
 
@@ -36,9 +41,8 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 title: 'Craftman',
                 theme: ThemeData(
-                    colorScheme:
-                        ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                    useMaterial3: true),
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                ),
                 initialRoute: RouteName.splash,
                 onGenerateRoute: AppRoute.onGeneratedRoute);
           }),

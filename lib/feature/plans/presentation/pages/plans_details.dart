@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:clicktwaek/config/page%20route/detail/route_name.dart';
 import 'package:clicktwaek/constants/export.dart';
 import 'package:clicktwaek/feature/home/data/home_images.dart';
 import 'package:clicktwaek/feature/splash_onboarding/data/local/onboarding_Images.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +16,8 @@ class PlansDetails extends StatelessWidget {
     final size = MediaQuery.sizeOf(context);
 
     return AppScaffold(
-        color: Appcolors.white,
+        backGroundColor: Appcolors.white,
+        color: Appcolors.redColor,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,23 +36,35 @@ class PlansDetails extends StatelessWidget {
             SizedBox(height: size.height * 0.015),
             const PlanDetailsContainer(),
             Expanded(child: Container()),
-            Center(
-              child: AppButton(
-                width: size.width * 0.95,
-                child: AppText(
-                    text: 'Confirm payment',
-                    size: 14,
-                    fontweight: FontWeight.w700,
-                    color: Appcolors.yellow),
-                ontap: () => showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (context) {
-                      return const PaymentSuccesDialog();
-                    }),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+              child: InkWell(
+                onTap: () {
+                  showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (context) {
+                        return const PaymentSuccesDialog();
+                      });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Appcolors.redColor,
+                      borderRadius: BorderRadius.circular(8)),
+                  height: 50,
+                  width: double.infinity,
+                  child: Center(
+                    child: AppText(
+                        text: 'Confirm payment',
+                        size: 14,
+                        fontweight: FontWeight.w700,
+                        color: Appcolors.yellow),
+                  ),
+                ),
               ),
             ),
-            SizedBox(height: size.height * 0.025),
+            SizedBox(height: size.height * 0.045)
+            // SizedBox(height: size.height * 0.25),
           ],
         ));
   }
@@ -185,7 +201,8 @@ class PaymentSuccesDialog extends StatelessWidget {
                   size: 14,
                   fontweight: FontWeight.w800,
                   color: Appcolors.yellow),
-              ontap: () => Navigator.pushNamed(context, RouteName.bottomnav),
+              ontap: () => Navigator.pushNamedAndRemoveUntil(
+                  context, RouteName.bottomnav, (route) => false),
             ),
             SizedBox(height: size.height * 0.025),
           ],

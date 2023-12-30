@@ -3,10 +3,12 @@ import 'package:clicktwaek/feature/home/presentration/pages/input_video_code.dar
 
 import 'package:clicktwaek/feature/home/presentration/pages/refer.dart';
 import 'package:clicktwaek/feature/home/presentration/pages/support.dart';
+import 'package:clicktwaek/feature/minning/presentation/pages/minning.dart';
 import 'package:clicktwaek/feature/plans/presentation/pages/plans_details.dart';
 import 'package:clicktwaek/feature/splash_onboarding/presentation/pages/bottomnav.dart';
 import 'package:clicktwaek/feature/splash_onboarding/presentation/pages/onboarding1.dart';
 import 'package:flutter/cupertino.dart';
+import '../../../feature/minning/presentation/pages/miningSplash.dart';
 import '../../../feature/splash_onboarding/presentation/pages/referal_code.dart';
 import '../../../feature/splash_onboarding/presentation/pages/splash_screen.dart';
 import '../page_route.dart';
@@ -25,6 +27,10 @@ class AppRoute {
 
       case RouteName.refer:
         return CustomPageRoute(child: const Refer());
+      case RouteName.miningSplash:
+        return CustomPageRoute(child: MiningSplash());
+      // case RouteName.miningScreen:
+      //   return CustomPageRoute(child: const Minning());
       case RouteName.support:
         return CustomPageRoute(child: const Support());
 

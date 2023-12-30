@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,12 +27,31 @@ class _SplashScreenState extends State<SplashScreen> {
     return BlocListener<OnboardingCubit, OnboardingState>(
       listener: (context, state) {
         if (state is OnboardingLoadedState) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, RouteName.firstonboarding, (route) => false);
+          if (FirebaseAuth.instance.currentUser == null) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteName.firstonboarding,
+              (route) => false,
+            );
+          } else {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteName.bottomnav,
+              (route) => false,
+            );
+          }
         }
       },
+      // BlocListener<OnboardingCubit, OnboardingState>(
+      //   listener: (context, state) {
+      //     if (state is OnboardingLoadedState) {
+      //       Navigator.pushNamedAndRemoveUntil(
+      //           context, RouteName.firstonboarding, (route) => false);
+      //     }
+      //   },
       child: AppScaffold(
-          color: Appcolors.white,
+          backGroundColor: Appcolors.white,
+          color: Appcolors.redColor,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -41,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(height: size.height * 0.035),
               const AppText(
                   textalign: TextAlign.center,
-                  text: 'CLICKTWAEK',
+                  text: 'ClickTeak',
                   size: 16,
                   fontweight: FontWeight.w900)
             ],

@@ -27,13 +27,13 @@ class AppshadowContainer extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
           color: color ?? Appcolors.white,
-          boxShadow: [
-            BoxShadow(
-                color: shadowcolour ?? Appcolors.lightgrey,
-                blurRadius: 20,
-                offset: const Offset(0, 8),
-                spreadRadius: 0)
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //       color: shadowcolour ?? Appcolors.lightgrey,
+          //       blurRadius: 6,
+          //       offset: const Offset(0, 8),
+          //       spreadRadius: 0)
+          // ],
           borderRadius: BorderRadius.circular(radius ?? size.width * 0.03)),
       child: child,
     );

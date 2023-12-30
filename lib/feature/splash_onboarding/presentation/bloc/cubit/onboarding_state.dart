@@ -11,9 +11,15 @@ final class OnboardingInitial extends OnboardingState {}
 
 final class OnboardingLoadingState extends OnboardingState {}
 
+final class OnboardingMiningLoadingState extends OnboardingState {}
+
+final class OnboardingMiningLoadedState extends OnboardingState {}
+
 final class OnboardingLoadedState extends OnboardingState {}
 
 final class OnboardingSigin extends OnboardingState {}
+
+final class OnboardingSiginOut extends OnboardingState {}
 
 final class OnboardingError extends OnboardingState {
   final String error;
